@@ -3,58 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://hasansi.github.io/categories/</loc>
+    <loc>https://www.hasanai.com/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://hasansi.github.io/pt-br/categories/"
+                href="https://www.hasanai.com/pt-br/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hasansi.github.io/categories/"
+                href="https://www.hasanai.com/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://hasansi.github.io/</loc>
+    <loc>https://www.hasanai.com/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://hasansi.github.io/pt-br/"
+                href="https://www.hasanai.com/pt-br/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hasansi.github.io/"
+                href="https://www.hasanai.com/"
                 />
   </url>
   
   <url>
-    <loc>https://hasansi.github.io/series/</loc>
+    <loc>https://www.hasanai.com/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://hasansi.github.io/pt-br/series/"
+                href="https://www.hasanai.com/pt-br/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hasansi.github.io/series/"
+                href="https://www.hasanai.com/series/"
                 />
   </url>
   
   <url>
-    <loc>https://hasansi.github.io/tags/</loc>
+    <loc>https://www.hasanai.com/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://hasansi.github.io/pt-br/tags/"
+                href="https://www.hasanai.com/pt-br/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://hasansi.github.io/tags/"
+                href="https://www.hasanai.com/tags/"
                 />
   </url>
   
