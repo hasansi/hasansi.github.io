@@ -3,26 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.hasanai.com/contact/</loc>
-    <lastmod>2019-11-10T23:55:04+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.hasanai.com/contact/myemail/</loc>
-    <lastmod>2019-11-10T23:55:04+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.hasanai.com/</loc>
-    <lastmod>2019-11-10T23:55:04+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.hasanai.com/categories/</loc>
   </url>
   
   <url>
+    <loc>https://www.hasanai.com/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.hasanai.com/contact/myemail/</loc>
+  </url>
+  
+  <url>
     <loc>https://www.hasanai.com/series/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.hasanai.com/</loc>
   </url>
   
   <url>
