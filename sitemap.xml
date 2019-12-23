@@ -3,12 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.hasanai.com/projects/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hasanai.com/projects/linear_regression/</loc>
+    <loc>https://www.hasanai.com/projects/a/</loc>
     <priority>0</priority>
   </url>
   
@@ -22,6 +17,10 @@
   
   <url>
     <loc>https://www.hasanai.com/contact/myemail/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.hasanai.com/projects/</loc>
   </url>
   
   <url>
