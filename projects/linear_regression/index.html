@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Syed Hasan">
+    <meta name="description" content="Syed Hasan&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Linear Regression Business Problem: Predict how many crew members will be needed for future ships made by Hyundai Heavy Industries Hyundai Heavy Industries.
+Here is what the data looks like so far:
+Description: Measurements of ship size, capacity, crew, and age for 158 cruise ships. Variables/Columns Ship Name 1-20 Cruise Line 21-40 Age (as of 2013) 46-48 Tonnage (1000s of tons) 50-56 passengers (100s) 58-64 Length (100s of feet) 66-72 Cabins (100s) 74-80 Passenger Density 82-88 Crew (100s) 90-96 It is saved in a csv file for you called &ldquo;cruise_ship_info."/>
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="Linear Regression Business Problem: Predict how many crew members will be needed for future ships made by Hyundai Heavy Industries Hyundai Heavy Industries.
+Here is what the data looks like so far:
+Description: Measurements of ship size, capacity, crew, and age for 158 cruise ships. Variables/Columns Ship Name 1-20 Cruise Line 21-40 Age (as of 2013) 46-48 Tonnage (1000s of tons) 50-56 passengers (100s) 58-64 Length (100s of feet) 66-72 Cabins (100s) 74-80 Passenger Density 82-88 Crew (100s) 90-96 It is saved in a csv file for you called &ldquo;cruise_ship_info." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.hasanai.com/projects/linear_regression/" />
+
+
+
+    
+      <base href="https://www.hasanai.com/projects/linear_regression/">
+    
+    <title>
+   · Syed Hasan
+</title>
+
+    
+      <link rel="canonical" href="https://www.hasanai.com/projects/linear_regression/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://www.hasanai.com/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://www.hasanai.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.hasanai.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.58.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://www.hasanai.com/">
+      Syed Hasan
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/contact/">Contact me</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1></h1>
+    </header>
+
+    
+
+<h1 id="linear-regression">Linear Regression</h1>
+
+<p>Business Problem: Predict how many crew members will be needed for future ships made by Hyundai Heavy Industries <a href="http://www.hyundai.eu/en">Hyundai Heavy Industries</a>.</p>
+
+<p>Here is what the data looks like so far:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Description: Measurements of ship size, capacity, crew, and age for 158 cruise
+ships.
+
+
+Variables/Columns
+Ship Name     1-20
+Cruise Line   21-40
+Age (as of 2013)   46-48
+Tonnage (1000s of tons)   50-56
+passengers (100s)   58-64
+Length (100s of feet)  66-72
+Cabins  (100s)   74-80
+Passenger Density   82-88
+Crew  (100s)   90-96</pre></div>
+<p>It is saved in a csv file for you called &ldquo;cruise_ship_info.csv&rdquo;. The client also mentioned that they have found that particular cruise lines will differ in acceptable crew counts, so it is most likely an important feature to include in the analysis.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># %load /home/ubuntu/projects/initialize.py</span>
+<span style="color:#fff;font-weight:bold">import</span> findspark
+findspark.init(<span style="color:#0ff;font-weight:bold">&#39;/home/ubuntu/spark-2.1.1-bin-hadoop2.7&#39;</span>)
+<span style="color:#fff;font-weight:bold">import</span> pyspark
+<span style="color:#fff;font-weight:bold">from</span> pyspark.sql <span style="color:#fff;font-weight:bold">import</span> SparkSession
+app_name=<span style="color:#0ff;font-weight:bold">&#39;app&#39;</span>
+spark=SparkSession.builder.appName(app_name).getOrCreate()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df = spark.read.csv(<span style="color:#0ff;font-weight:bold">&#39;data/cruise_ship_info.csv&#39;</span>,inferSchema=True,header=True)<span style="color:#007f7f"># data from uci machine learning repo</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df.printSchema()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">root
+ |-- Ship_name: string (nullable = true)
+ |-- Cruise_line: string (nullable = true)
+ |-- Age: integer (nullable = true)
+ |-- Tonnage: double (nullable = true)
+ |-- passengers: double (nullable = true)
+ |-- length: double (nullable = true)
+ |-- cabins: double (nullable = true)
+ |-- passenger_density: double (nullable = true)
+ |-- crew: double (nullable = true)</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">for</span> ship in df.head(<span style="color:#ff0;font-weight:bold">5</span>):
+    <span style="color:#fff;font-weight:bold">print</span>(ship)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#39;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Row(Ship_name=&#39;Journey&#39;, Cruise_line=&#39;Azamara&#39;, Age=6, Tonnage=30.276999999999997, passengers=6.94, length=5.94, cabins=3.55, passenger_density=42.64, crew=3.55)
+
+
+Row(Ship_name=&#39;Quest&#39;, Cruise_line=&#39;Azamara&#39;, Age=6, Tonnage=30.276999999999997, passengers=6.94, length=5.94, cabins=3.55, passenger_density=42.64, crew=3.55)
+
+
+Row(Ship_name=&#39;Celebration&#39;, Cruise_line=&#39;Carnival&#39;, Age=26, Tonnage=47.262, passengers=14.86, length=7.22, cabins=7.43, passenger_density=31.8, crew=6.7)
+
+
+Row(Ship_name=&#39;Conquest&#39;, Cruise_line=&#39;Carnival&#39;, Age=11, Tonnage=110.0, passengers=29.74, length=9.53, cabins=14.88, passenger_density=36.99, crew=19.1)
+
+
+Row(Ship_name=&#39;Destiny&#39;, Cruise_line=&#39;Carnival&#39;, Age=17, Tonnage=101.353, passengers=26.42, length=8.92, cabins=13.21, passenger_density=38.36, crew=10.0)</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df.describe().show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-------+---------+-----------+------------------+------------------+-----------------+-----------------+------------------+-----------------+-----------------+
+|summary|Ship_name|Cruise_line|               Age|           Tonnage|       passengers|           length|            cabins|passenger_density|             crew|
++-------+---------+-----------+------------------+------------------+-----------------+-----------------+------------------+-----------------+-----------------+
+|  count|      158|        158|               158|               158|              158|              158|               158|              158|              158|
+|   mean| Infinity|       null|15.689873417721518| 71.28467088607599|18.45740506329114|8.130632911392404| 8.830000000000005|39.90094936708861|7.794177215189873|
+| stddev|      NaN|       null| 7.615691058751413|37.229540025907866|9.677094775143416|1.793473548054825|4.4714172221480615| 8.63921711391542|3.503486564627034|
+|    min|Adventure|    Azamara|                 4|             2.329|             0.66|             2.79|              0.33|             17.7|             0.59|
+|    max|Zuiderdam|   Windstar|                48|             220.0|             54.0|            11.82|              27.0|            71.43|             21.0|
++-------+---------+-----------+------------------+------------------+-----------------+-----------------+------------------+-----------------+-----------------+</pre></div>
+<h2 id="dealing-with-the-cruise-line-categorical-variable">Dealing with the Cruise_line categorical variable</h2>
+
+<p>Ship Name is a useless arbitrary string, but the cruise_line itself may be useful. Let&rsquo;s make it into a categorical variable!</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df.groupBy(<span style="color:#0ff;font-weight:bold">&#39;Cruise_line&#39;</span>).count().show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-----------------+-----+
+|      Cruise_line|count|
++-----------------+-----+
+|            Costa|   11|
+|              P&amp;O|    6|
+|           Cunard|    3|
+|Regent_Seven_Seas|    5|
+|              MSC|    8|
+|         Carnival|   22|
+|          Crystal|    2|
+|           Orient|    1|
+|         Princess|   17|
+|        Silversea|    4|
+|         Seabourn|    3|
+| Holland_American|   14|
+|         Windstar|    3|
+|           Disney|    2|
+|        Norwegian|   13|
+|          Oceania|    3|
+|          Azamara|    2|
+|        Celebrity|   10|
+|             Star|    6|
+|  Royal_Caribbean|   23|
++-----------------+-----+</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.feature <span style="color:#fff;font-weight:bold">import</span> StringIndexer<span style="color:#007f7f">#change strings to number groups, will call it cruise_cat</span>
+indexer = StringIndexer(inputCol=<span style="color:#0ff;font-weight:bold">&#34;Cruise_line&#34;</span>, outputCol=<span style="color:#0ff;font-weight:bold">&#34;cruise_cat&#34;</span>)
+indexed = indexer.fit(df).transform(df)
+indexed.head(<span style="color:#ff0;font-weight:bold">5</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[Row(Ship_name=&#39;Journey&#39;, Cruise_line=&#39;Azamara&#39;, Age=6, Tonnage=30.276999999999997, passengers=6.94, length=5.94, cabins=3.55, passenger_density=42.64, crew=3.55, cruise_cat=16.0),
+ Row(Ship_name=&#39;Quest&#39;, Cruise_line=&#39;Azamara&#39;, Age=6, Tonnage=30.276999999999997, passengers=6.94, length=5.94, cabins=3.55, passenger_density=42.64, crew=3.55, cruise_cat=16.0),
+ Row(Ship_name=&#39;Celebration&#39;, Cruise_line=&#39;Carnival&#39;, Age=26, Tonnage=47.262, passengers=14.86, length=7.22, cabins=7.43, passenger_density=31.8, crew=6.7, cruise_cat=1.0),
+ Row(Ship_name=&#39;Conquest&#39;, Cruise_line=&#39;Carnival&#39;, Age=11, Tonnage=110.0, passengers=29.74, length=9.53, cabins=14.88, passenger_density=36.99, crew=19.1, cruise_cat=1.0),
+ Row(Ship_name=&#39;Destiny&#39;, Cruise_line=&#39;Carnival&#39;, Age=17, Tonnage=101.353, passengers=26.42, length=8.92, cabins=13.21, passenger_density=38.36, crew=10.0, cruise_cat=1.0)]</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.linalg <span style="color:#fff;font-weight:bold">import</span> Vectors
+<span style="color:#fff;font-weight:bold">from</span> pyspark.ml.feature <span style="color:#fff;font-weight:bold">import</span> VectorAssembler</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">indexed.columns</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[&#39;Ship_name&#39;,
+ &#39;Cruise_line&#39;,
+ &#39;Age&#39;,
+ &#39;Tonnage&#39;,
+ &#39;passengers&#39;,
+ &#39;length&#39;,
+ &#39;cabins&#39;,
+ &#39;passenger_density&#39;,
+ &#39;crew&#39;,
+ &#39;cruise_cat&#39;]</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">assembler = VectorAssembler(
+  inputCols=[<span style="color:#0ff;font-weight:bold">&#39;Age&#39;</span>,
+             <span style="color:#0ff;font-weight:bold">&#39;Tonnage&#39;</span>,
+             <span style="color:#0ff;font-weight:bold">&#39;passengers&#39;</span>,
+             <span style="color:#0ff;font-weight:bold">&#39;length&#39;</span>,
+             <span style="color:#0ff;font-weight:bold">&#39;cabins&#39;</span>,
+             <span style="color:#0ff;font-weight:bold">&#39;passenger_density&#39;</span>,
+             <span style="color:#0ff;font-weight:bold">&#39;cruise_cat&#39;</span>],
+    outputCol=<span style="color:#0ff;font-weight:bold">&#34;features&#34;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">output = assembler.transform(indexed)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">output.select(<span style="color:#0ff;font-weight:bold">&#34;features&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;crew&#34;</span>).show()<span style="color:#007f7f">#crew will be label</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+--------------------+----+
+|            features|crew|
++--------------------+----+
+|[6.0,30.276999999...|3.55|
+|[6.0,30.276999999...|3.55|
+|[26.0,47.262,14.8...| 6.7|
+|[11.0,110.0,29.74...|19.1|
+|[17.0,101.353,26....|10.0|
+|[22.0,70.367,20.5...| 9.2|
+|[15.0,70.367,20.5...| 9.2|
+|[23.0,70.367,20.5...| 9.2|
+|[19.0,70.367,20.5...| 9.2|
+|[6.0,110.23899999...|11.5|
+|[10.0,110.0,29.74...|11.6|
+|[28.0,46.052,14.5...| 6.6|
+|[18.0,70.367,20.5...| 9.2|
+|[17.0,70.367,20.5...| 9.2|
+|[11.0,86.0,21.24,...| 9.3|
+|[8.0,110.0,29.74,...|11.6|
+|[9.0,88.5,21.24,9...|10.3|
+|[15.0,70.367,20.5...| 9.2|
+|[12.0,88.5,21.24,...| 9.3|
+|[20.0,70.367,20.5...| 9.2|
++--------------------+----+
+only showing top 20 rows</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">final_data = output.select(<span style="color:#0ff;font-weight:bold">&#34;features&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;crew&#34;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_data,test_data = final_data.randomSplit([<span style="color:#ff0;font-weight:bold">0.7</span>,<span style="color:#ff0;font-weight:bold">0.3</span>])</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.regression <span style="color:#fff;font-weight:bold">import</span> LinearRegression
+<span style="color:#007f7f"># Create a Linear Regression Model object</span>
+lr = LinearRegression(labelCol=<span style="color:#0ff;font-weight:bold">&#39;crew&#39;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># Fit the model to the data and call this model lrModel</span>
+lrModel = lr.fit(train_data)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># Print the coefficients and intercept for linear regression</span>
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Coefficients: {} Intercept: {}&#34;</span>.format(lrModel.coefficients,lrModel.intercept))</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Coefficients: [8.22997689211e-05,0.0152689499471,-0.158455634489,0.379068880526,0.850738812011,-0.0045383944705,0.0540957516891] Intercept: -1.008733471378521</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">test_results = lrModel.evaluate(test_data)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;RMSE: {}&#34;</span>.format(test_results.rootMeanSquaredError))
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;MSE: {}&#34;</span>.format(test_results.meanSquaredError))
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;R2: {}&#34;</span>.format(test_results.r2))</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">RMSE: 0.6532850346294468
+MSE: 0.4267813364707975
+R2: 0.9666208970674888</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># R2 of 0.86 is pretty good, let&#39;s check the data a little closer</span>
+<span style="color:#fff;font-weight:bold">from</span> pyspark.sql.functions <span style="color:#fff;font-weight:bold">import</span> corr</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df.select(corr(<span style="color:#0ff;font-weight:bold">&#39;crew&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;passengers&#39;</span>)).show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+----------------------+
+|corr(crew, passengers)|
++----------------------+
+|    0.9152341306065384|
++----------------------+</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df.select(corr(<span style="color:#0ff;font-weight:bold">&#39;crew&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;cabins&#39;</span>)).show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+------------------+
+|corr(crew, cabins)|
++------------------+
+|0.9508226063578497|
++------------------+</pre></div>
+<p>So it does make sense! Well that is good news, this is information to be brought to the company!</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
