@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Syed Hasan">
+    <meta name="description" content="Syed Hasan&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Regression"/>
+<meta name="twitter:description" content="Logistic Regression Binary Customer Churn A marketing agency has many customers that use their service to produce ads for the client/customer websites. They&rsquo;ve noticed that they have quite a bit of churn in clients(i.e customer stopped buying products). They basically randomly assign account managers right now, but want you to create a machine learning model that will help predict which customers will churn (stop buying their service) so that they can correctly assign the customers most at risk to churn an account manager."/>
+
+    <meta property="og:title" content="Linear Regression" />
+<meta property="og:description" content="Logistic Regression Binary Customer Churn A marketing agency has many customers that use their service to produce ads for the client/customer websites. They&rsquo;ve noticed that they have quite a bit of churn in clients(i.e customer stopped buying products). They basically randomly assign account managers right now, but want you to create a machine learning model that will help predict which customers will churn (stop buying their service) so that they can correctly assign the customers most at risk to churn an account manager." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.hasanai.com/projects/logistic_regression/" />
+
+
+
+    
+      <base href="https://www.hasanai.com/projects/logistic_regression/">
+    
+    <title>
+  Linear Regression · Syed Hasan
+</title>
+
+    
+      <link rel="canonical" href="https://www.hasanai.com/projects/logistic_regression/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://www.hasanai.com/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://www.hasanai.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.hasanai.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.58.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://www.hasanai.com/">
+      Syed Hasan
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/contact/">Contact me</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Linear Regression</h1>
+    </header>
+
+    
+
+<h1 id="logistic-regression">Logistic Regression</h1>
+
+<h2 id="binary-customer-churn">Binary Customer Churn</h2>
+
+<p>A marketing agency has many customers that use their service to produce ads for the client/customer websites. They&rsquo;ve noticed that they have quite a bit of churn in clients(i.e customer stopped buying products). They basically randomly assign account managers right now, but want you to create a machine learning model that will help predict which customers will churn (stop buying their service) so that they can correctly assign the customers most at risk to churn an account manager. They have some historical data that can be of help. In this project, I will create a classification algorithm that will help classify whether or not a customer churned. Then the company can test this against incoming data for future customers to predict which customers will churn and assign them an account manager.</p>
+
+<p>The data is saved as customer_churn.csv. Here are the fields and their definitions:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Name : Name of the latest contact at Company
+Age: Customer Age
+Total_Purchase: Total Ads Purchased
+Account_Manager: Binary 0=No manager, 1= Account manager assigned
+Years: Totaly Years as a customer
+Num_sites: Number of websites that use the service.
+Onboard_date: Date that the name of the latest contact was onboarded
+Location: Client HQ Address
+Company: Name of Client Company</pre></div>
+<p>Once the model is created and evaluated, I will test it out on some new data in &lsquo;new_data.csv&rsquo;. The client wants to know which customers are most likely to churn given this data (they don&rsquo;t have the label yet).</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># %load /home/ubuntu/projects/initialize.py</span>
+<span style="color:#fff;font-weight:bold">import</span> findspark
+findspark.init(<span style="color:#0ff;font-weight:bold">&#39;/home/ubuntu/spark-2.1.1-bin-hadoop2.7&#39;</span>)
+<span style="color:#fff;font-weight:bold">import</span> pyspark
+<span style="color:#fff;font-weight:bold">from</span> pyspark.sql <span style="color:#fff;font-weight:bold">import</span> SparkSession
+app_name=<span style="color:#0ff;font-weight:bold">&#39;app&#39;</span>
+spark=SparkSession.builder.appName(app_name).getOrCreate()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data = spark.read.csv(<span style="color:#0ff;font-weight:bold">&#39;data/customer_churn.csv&#39;</span>,inferSchema=True,
+                     header=True)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data.printSchema()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">root
+ |-- Names: string (nullable = true)
+ |-- Age: double (nullable = true)
+ |-- Total_Purchase: double (nullable = true)
+ |-- Account_Manager: integer (nullable = true)
+ |-- Years: double (nullable = true)
+ |-- Num_Sites: double (nullable = true)
+ |-- Onboard_date: timestamp (nullable = true)
+ |-- Location: string (nullable = true)
+ |-- Company: string (nullable = true)
+ |-- Churn: integer (nullable = true)</pre></div>
+<h3 id="check-out-the-data">Check out the data</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data.describe().show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-------+-------------+-----------------+-----------------+------------------+-----------------+------------------+--------------------+--------------------+-------------------+
+|summary|        Names|              Age|   Total_Purchase|   Account_Manager|            Years|         Num_Sites|            Location|             Company|              Churn|
++-------+-------------+-----------------+-----------------+------------------+-----------------+------------------+--------------------+--------------------+-------------------+
+|  count|          900|              900|              900|               900|              900|               900|                 900|                 900|                900|
+|   mean|         null|41.81666666666667|10062.82403333334|0.4811111111111111| 5.27315555555555| 8.587777777777777|                null|                null|0.16666666666666666|
+| stddev|         null|6.127560416916251|2408.644531858096|0.4999208935073339|1.274449013194616|1.7648355920350969|                null|                null| 0.3728852122772358|
+|    min|   Aaron King|             22.0|            100.0|                 0|              1.0|               3.0|00103 Jeffrey Cre...|     Abbott-Thompson|                  0|
+|    max|Zachary Walsh|             65.0|         18026.01|                 1|             9.15|              14.0|Unit 9800 Box 287...|Zuniga, Clark and...|                  1|
++-------+-------------+-----------------+-----------------+------------------+-----------------+------------------+--------------------+--------------------+-------------------+</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data.columns</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[&#39;Names&#39;,
+ &#39;Age&#39;,
+ &#39;Total_Purchase&#39;,
+ &#39;Account_Manager&#39;,
+ &#39;Years&#39;,
+ &#39;Num_Sites&#39;,
+ &#39;Onboard_date&#39;,
+ &#39;Location&#39;,
+ &#39;Company&#39;,
+ &#39;Churn&#39;]</pre></div>
+<h3 id="format-for-mllib">Format for MLlib</h3>
+
+<p>We&rsquo;ll ues the numerical columns. We&rsquo;ll include Account Manager because its easy enough, but keep in mind it probably won&rsquo;t be any sort of a signal because the agency mentioned its randomly assigned!</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.feature <span style="color:#fff;font-weight:bold">import</span> VectorAssembler</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">assembler = VectorAssembler(inputCols=[<span style="color:#0ff;font-weight:bold">&#39;Age&#39;</span>,
+ <span style="color:#0ff;font-weight:bold">&#39;Total_Purchase&#39;</span>,
+ <span style="color:#0ff;font-weight:bold">&#39;Account_Manager&#39;</span>,
+ <span style="color:#0ff;font-weight:bold">&#39;Years&#39;</span>,
+ <span style="color:#0ff;font-weight:bold">&#39;Num_Sites&#39;</span>],outputCol=<span style="color:#0ff;font-weight:bold">&#39;features&#39;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">output = assembler.transform(data)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">final_data = output.select(<span style="color:#0ff;font-weight:bold">&#39;features&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;churn&#39;</span>)</code></pre></div>
+<h3 id="test-train-split">Test Train Split</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_churn,test_churn = final_data.randomSplit([<span style="color:#ff0;font-weight:bold">0.7</span>,<span style="color:#ff0;font-weight:bold">0.3</span>])</code></pre></div>
+<h3 id="fit-the-model">Fit the model</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.classification <span style="color:#fff;font-weight:bold">import</span> LogisticRegression</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">lr_churn = LogisticRegression(labelCol=<span style="color:#0ff;font-weight:bold">&#39;churn&#39;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fitted_churn_model = lr_churn.fit(train_churn)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">training_sum = fitted_churn_model.summary</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">training_sum.predictions.describe().show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-------+-------------------+-------------------+
+|summary|              churn|         prediction|
++-------+-------------------+-------------------+
+|  count|                626|                626|
+|   mean|0.16134185303514376|0.11501597444089456|
+| stddev|0.36814013167477516| 0.3192963509725862|
+|    min|                0.0|                0.0|
+|    max|                1.0|                1.0|
++-------+-------------------+-------------------+</pre></div>
+<h3 id="evaluate-results">Evaluate results</h3>
+
+<p>Let&rsquo;s evaluate the results on the data set we were given (using the test data)</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.evaluation <span style="color:#fff;font-weight:bold">import</span> BinaryClassificationEvaluator</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pred_and_labels = fitted_churn_model.evaluate(test_churn)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pred_and_labels.predictions.show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+--------------------+-----+--------------------+--------------------+----------+
+|            features|churn|       rawPrediction|         probability|prediction|
++--------------------+-----+--------------------+--------------------+----------+
+|[22.0,11254.38,1....|    0|[4.37274911189311...|[0.98754068440807...|       0.0|
+|[26.0,8939.61,0.0...|    0|[5.87476599741785...|[0.99719841936848...|       0.0|
+|[27.0,8628.8,1.0,...|    0|[5.10941120065408...|[0.99399662022887...|       0.0|
+|[28.0,9090.43,1.0...|    0|[1.36337386804470...|[0.79630749253360...|       0.0|
+|[28.0,11245.38,0....|    0|[3.31944459560114...|[0.96508988394945...|       0.0|
+|[30.0,6744.87,0.0...|    0|[3.06883440837757...|[0.95558873223614...|       0.0|
+|[30.0,8403.78,1.0...|    0|[5.65542120933540...|[0.99651369764999...|       0.0|
+|[31.0,5304.6,0.0,...|    0|[2.95142032551799...|[0.95033057407558...|       0.0|
+|[31.0,8688.21,0.0...|    0|[6.20044628785487...|[0.99797558145576...|       0.0|
+|[31.0,8829.83,1.0...|    0|[4.22749539474864...|[0.98562089093317...|       0.0|
+|[31.0,9574.89,0.0...|    0|[2.83142395269194...|[0.94435048192403...|       0.0|
+|[31.0,11743.24,0....|    0|[6.29105384971980...|[0.99815062020441...|       0.0|
+|[32.0,7896.65,0.0...|    0|[2.93498302116579...|[0.94954892595428...|       0.0|
+|[32.0,8011.38,0.0...|    0|[1.68697560091684...|[0.84382600777498...|       0.0|
+|[32.0,9885.12,1.0...|    1|[1.60809147265916...|[0.83314624386906...|       0.0|
+|[33.0,4711.89,0.0...|    0|[5.33886279392834...|[0.99522161488696...|       0.0|
+|[33.0,5738.82,0.0...|    0|[3.74180645302845...|[0.97683796907568...|       0.0|
+|[33.0,10709.39,1....|    0|[5.98128726879954...|[0.99748078934333...|       0.0|
+|[33.0,12249.96,0....|    0|[5.27615072734326...|[0.99491392962866...|       0.0|
+|[33.0,13157.08,1....|    0|[1.47782624981273...|[0.81424402404651...|       0.0|
++--------------------+-----+--------------------+--------------------+----------+
+only showing top 20 rows</pre></div>
+<h3 id="using-auc">Using AUC</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">churn_eval = BinaryClassificationEvaluator(rawPredictionCol=<span style="color:#0ff;font-weight:bold">&#39;prediction&#39;</span>,
+                                           labelCol=<span style="color:#0ff;font-weight:bold">&#39;churn&#39;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">auc = churn_eval.evaluate(pred_and_labels.predictions)<span style="color:#007f7f">#area under curve</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">auc</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">0.7816780045351474</pre></div>
+<p>what is a good AUC value? (<a href="https://stats.stackexchange.com/questions/113326/what-is-a-good-auc-for-a-precision-recall-curve">https://stats.stackexchange.com/questions/113326/what-is-a-good-auc-for-a-precision-recall-curve</a>)</p>
+
+<h3 id="predict-on-brand-new-unlabeled-data">Predict on brand new unlabeled data</h3>
+
+<p>We still need to evaluate the new_customers.csv file!</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">final_lr_model = lr_churn.fit(final_data)<span style="color:#007f7f">#fit on all final data, not just train or test</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">new_customers = spark.read.csv(<span style="color:#0ff;font-weight:bold">&#39;data/new_customers.csv&#39;</span>,inferSchema=True,
+                              header=True)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">new_customers.printSchema()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">root
+ |-- Names: string (nullable = true)
+ |-- Age: double (nullable = true)
+ |-- Total_Purchase: double (nullable = true)
+ |-- Account_Manager: integer (nullable = true)
+ |-- Years: double (nullable = true)
+ |-- Num_Sites: double (nullable = true)
+ |-- Onboard_date: timestamp (nullable = true)
+ |-- Location: string (nullable = true)
+ |-- Company: string (nullable = true)</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">test_new_customers = assembler.transform(new_customers)<span style="color:#007f7f">#using old assembler object to transform and see we get</span>
+<span style="color:#007f7f"># features column</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">test_new_customers.printSchema()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">root
+ |-- Names: string (nullable = true)
+ |-- Age: double (nullable = true)
+ |-- Total_Purchase: double (nullable = true)
+ |-- Account_Manager: integer (nullable = true)
+ |-- Years: double (nullable = true)
+ |-- Num_Sites: double (nullable = true)
+ |-- Onboard_date: timestamp (nullable = true)
+ |-- Location: string (nullable = true)
+ |-- Company: string (nullable = true)
+ |-- features: vector (nullable = true)</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">final_results = final_lr_model.transform(test_new_customers)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">final_results.select(<span style="color:#0ff;font-weight:bold">&#39;Company&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;prediction&#39;</span>).show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+----------------+----------+
+|         Company|prediction|
++----------------+----------+
+|        King Ltd|       0.0|
+|   Cannon-Benson|       1.0|
+|Barron-Robertson|       1.0|
+|   Sexton-Golden|       1.0|
+|        Wood LLC|       0.0|
+|   Parks-Robbins|       1.0|
++----------------+----------+</pre></div>
+<p>Now we know that we should assign Acocunt Managers to Cannon-Benson,Barron-Robertson,Sexton-GOlden, and Parks-Robbins!</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

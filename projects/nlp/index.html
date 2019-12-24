@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Syed Hasan">
+    <meta name="description" content="Syed Hasan&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NLP"/>
+<meta name="twitter:description" content="Natural Language Processing In this project, I&rsquo;ll build a spam filter using various NLP tools as well as the Naive Bayes classifier.
+I&rsquo;ll use a classic dataset for this - UCI Repository SMS Spam Detection: https://archive.ics.uci.edu/ml/datasets/SMS&#43;Spam&#43;Collection
+# %load /home/ubuntu/projects/initialize.py import findspark findspark.init(&#39;/home/ubuntu/spark-2.1.1-bin-hadoop2.7&#39;) import pyspark from pyspark.sql import SparkSession app_name=&#39;app&#39; spark=SparkSession.builder.appName(app_name).getOrCreate()data = spark.read.csv(&#34;data/SMSSpamCollection&#34;,inferSchema=True,sep=&#39;\t&#39;)#seperated by tabs, not commadata = data.withColumnRenamed(&#39;_c0&#39;,&#39;class&#39;).withColumnRenamed(&#39;_c1&#39;,&#39;text&#39;)#re-label the _c0 and _c1 columnsdata.show()&#43;-----&#43;--------------------&#43; |class| text| &#43;-----&#43;--------------------&#43; | ham|Go until jurong p."/>
+
+    <meta property="og:title" content="NLP" />
+<meta property="og:description" content="Natural Language Processing In this project, I&rsquo;ll build a spam filter using various NLP tools as well as the Naive Bayes classifier.
+I&rsquo;ll use a classic dataset for this - UCI Repository SMS Spam Detection: https://archive.ics.uci.edu/ml/datasets/SMS&#43;Spam&#43;Collection
+# %load /home/ubuntu/projects/initialize.py import findspark findspark.init(&#39;/home/ubuntu/spark-2.1.1-bin-hadoop2.7&#39;) import pyspark from pyspark.sql import SparkSession app_name=&#39;app&#39; spark=SparkSession.builder.appName(app_name).getOrCreate()data = spark.read.csv(&#34;data/SMSSpamCollection&#34;,inferSchema=True,sep=&#39;\t&#39;)#seperated by tabs, not commadata = data.withColumnRenamed(&#39;_c0&#39;,&#39;class&#39;).withColumnRenamed(&#39;_c1&#39;,&#39;text&#39;)#re-label the _c0 and _c1 columnsdata.show()&#43;-----&#43;--------------------&#43; |class| text| &#43;-----&#43;--------------------&#43; | ham|Go until jurong p." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.hasanai.com/projects/nlp/" />
+
+
+
+    
+      <base href="https://www.hasanai.com/projects/nlp/">
+    
+    <title>
+  NLP · Syed Hasan
+</title>
+
+    
+      <link rel="canonical" href="https://www.hasanai.com/projects/nlp/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://www.hasanai.com/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://www.hasanai.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.hasanai.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.58.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://www.hasanai.com/">
+      Syed Hasan
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.hasanai.com/contact/">Contact me</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>NLP</h1>
+    </header>
+
+    
+
+<h1 id="natural-language-processing">Natural Language Processing</h1>
+
+<p>In this project, I&rsquo;ll build a spam filter using various NLP tools as well as the Naive Bayes classifier.</p>
+
+<p>I&rsquo;ll use a classic dataset for this - UCI Repository SMS Spam Detection: <a href="https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection">https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection</a></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># %load /home/ubuntu/projects/initialize.py</span>
+<span style="color:#fff;font-weight:bold">import</span> findspark
+findspark.init(<span style="color:#0ff;font-weight:bold">&#39;/home/ubuntu/spark-2.1.1-bin-hadoop2.7&#39;</span>)
+<span style="color:#fff;font-weight:bold">import</span> pyspark
+<span style="color:#fff;font-weight:bold">from</span> pyspark.sql <span style="color:#fff;font-weight:bold">import</span> SparkSession
+app_name=<span style="color:#0ff;font-weight:bold">&#39;app&#39;</span>
+spark=SparkSession.builder.appName(app_name).getOrCreate()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data = spark.read.csv(<span style="color:#0ff;font-weight:bold">&#34;data/SMSSpamCollection&#34;</span>,inferSchema=True,sep=<span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">\t</span><span style="color:#0ff;font-weight:bold">&#39;</span>)<span style="color:#007f7f">#seperated by tabs, not comma</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data = data.withColumnRenamed(<span style="color:#0ff;font-weight:bold">&#39;_c0&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;class&#39;</span>).withColumnRenamed(<span style="color:#0ff;font-weight:bold">&#39;_c1&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;text&#39;</span>)<span style="color:#007f7f">#re-label the _c0 and _c1 columns</span></code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data.show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-----+--------------------+
+|class|                text|
++-----+--------------------+
+|  ham|Go until jurong p...|
+|  ham|Ok lar... Joking ...|
+| spam|Free entry in 2 a...|
+|  ham|U dun say so earl...|
+|  ham|Nah I don&#39;t think...|
+| spam|FreeMsg Hey there...|
+|  ham|Even my brother i...|
+|  ham|As per your reque...|
+| spam|WINNER!! As a val...|
+| spam|Had your mobile 1...|
+|  ham|I&#39;m gonna be home...|
+| spam|SIX chances to wi...|
+| spam|URGENT! You have ...|
+|  ham|I&#39;ve been searchi...|
+|  ham|I HAVE A DATE ON ...|
+| spam|XXXMobileMovieClu...|
+|  ham|Oh k...i&#39;m watchi...|
+|  ham|Eh u remember how...|
+|  ham|Fine if thats th...|
+| spam|England v Macedon...|
++-----+--------------------+
+only showing top 20 rows</pre></div>
+<h2 id="clean-and-prepare-the-data">Clean and Prepare the Data</h2>
+
+<p>** Create a new length feature: **</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.sql.functions <span style="color:#fff;font-weight:bold">import</span> length</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data = data.withColumn(<span style="color:#0ff;font-weight:bold">&#39;length&#39;</span>,length(data[<span style="color:#0ff;font-weight:bold">&#39;text&#39;</span>]))</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data.show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-----+--------------------+------+
+|class|                text|length|
++-----+--------------------+------+
+|  ham|Go until jurong p...|   111|
+|  ham|Ok lar... Joking ...|    29|
+| spam|Free entry in 2 a...|   155|
+|  ham|U dun say so earl...|    49|
+|  ham|Nah I don&#39;t think...|    61|
+| spam|FreeMsg Hey there...|   147|
+|  ham|Even my brother i...|    77|
+|  ham|As per your reque...|   160|
+| spam|WINNER!! As a val...|   157|
+| spam|Had your mobile 1...|   154|
+|  ham|I&#39;m gonna be home...|   109|
+| spam|SIX chances to wi...|   136|
+| spam|URGENT! You have ...|   155|
+|  ham|I&#39;ve been searchi...|   196|
+|  ham|I HAVE A DATE ON ...|    35|
+| spam|XXXMobileMovieClu...|   149|
+|  ham|Oh k...i&#39;m watchi...|    26|
+|  ham|Eh u remember how...|    81|
+|  ham|Fine if thats th...|    56|
+| spam|England v Macedon...|   155|
++-----+--------------------+------+
+only showing top 20 rows</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># Pretty Clear Difference</span>
+data.groupby(<span style="color:#0ff;font-weight:bold">&#39;class&#39;</span>).mean().show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-----+-----------------+
+|class|      avg(length)|
++-----+-----------------+
+|  ham|71.45431945307645|
+| spam|138.6706827309237|
++-----+-----------------+</pre></div>
+<h2 id="feature-transformations">Feature Transformations</h2>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.feature <span style="color:#fff;font-weight:bold">import</span> Tokenizer,StopWordsRemover, CountVectorizer,IDF,StringIndexer
+
+tokenizer = Tokenizer(inputCol=<span style="color:#0ff;font-weight:bold">&#34;text&#34;</span>, outputCol=<span style="color:#0ff;font-weight:bold">&#34;token_text&#34;</span>)
+stopremove = StopWordsRemover(inputCol=<span style="color:#0ff;font-weight:bold">&#39;token_text&#39;</span>,outputCol=<span style="color:#0ff;font-weight:bold">&#39;stop_tokens&#39;</span>)
+count_vec = CountVectorizer(inputCol=<span style="color:#0ff;font-weight:bold">&#39;stop_tokens&#39;</span>,outputCol=<span style="color:#0ff;font-weight:bold">&#39;c_vec&#39;</span>)
+idf = IDF(inputCol=<span style="color:#0ff;font-weight:bold">&#34;c_vec&#34;</span>, outputCol=<span style="color:#0ff;font-weight:bold">&#34;tf_idf&#34;</span>)
+ham_spam_to_num = StringIndexer(inputCol=<span style="color:#0ff;font-weight:bold">&#39;class&#39;</span>,outputCol=<span style="color:#0ff;font-weight:bold">&#39;label&#39;</span>)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.feature <span style="color:#fff;font-weight:bold">import</span> VectorAssembler
+<span style="color:#fff;font-weight:bold">from</span> pyspark.ml.linalg <span style="color:#fff;font-weight:bold">import</span> Vector</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">clean_up = VectorAssembler(inputCols=[<span style="color:#0ff;font-weight:bold">&#39;tf_idf&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;length&#39;</span>],outputCol=<span style="color:#0ff;font-weight:bold">&#39;features&#39;</span>)</code></pre></div>
+<h3 id="the-model">The Model</h3>
+
+<p>I&rsquo;ll use Naive Bayes.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.classification <span style="color:#fff;font-weight:bold">import</span> NaiveBayes</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># Use defaults</span>
+nb = NaiveBayes()</code></pre></div>
+<h3 id="pipeline">Pipeline</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml <span style="color:#fff;font-weight:bold">import</span> Pipeline</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data_prep_pipe = Pipeline(stages=[ham_spam_to_num,tokenizer,stopremove,count_vec,idf,clean_up])</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cleaner = data_prep_pipe.fit(data)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">clean_data = cleaner.transform(data)</code></pre></div>
+<h3 id="training-and-evaluation">Training and Evaluation!</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">clean_data = clean_data.select([<span style="color:#0ff;font-weight:bold">&#39;label&#39;</span>,<span style="color:#0ff;font-weight:bold">&#39;features&#39;</span>])</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">clean_data.show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-----+--------------------+
+|label|            features|
++-----+--------------------+
+|  0.0|(13459,[8,12,33,6...|
+|  0.0|(13459,[0,26,308,...|
+|  1.0|(13459,[2,14,20,3...|
+|  0.0|(13459,[0,73,84,1...|
+|  0.0|(13459,[36,39,140...|
+|  1.0|(13459,[11,57,62,...|
+|  0.0|(13459,[11,55,108...|
+|  0.0|(13459,[133,195,4...|
+|  1.0|(13459,[1,50,124,...|
+|  1.0|(13459,[0,1,14,29...|
+|  0.0|(13459,[5,19,36,4...|
+|  1.0|(13459,[9,18,40,9...|
+|  1.0|(13459,[14,32,50,...|
+|  0.0|(13459,[42,99,101...|
+|  0.0|(13459,[567,1745,...|
+|  1.0|(13459,[32,113,11...|
+|  0.0|(13459,[86,224,47...|
+|  0.0|(13459,[0,2,52,13...|
+|  0.0|(13459,[0,77,107,...|
+|  1.0|(13459,[4,32,35,6...|
++-----+--------------------+
+only showing top 20 rows</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">(training,testing) = clean_data.randomSplit([<span style="color:#ff0;font-weight:bold">0.7</span>,<span style="color:#ff0;font-weight:bold">0.3</span>])</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">spam_predictor = nb.fit(training)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">data.printSchema()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">root
+ |-- class: string (nullable = true)
+ |-- text: string (nullable = true)
+ |-- length: integer (nullable = true)</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">test_results = spam_predictor.transform(testing)</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">test_results.show()</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">+-----+--------------------+--------------------+--------------------+----------+
+|label|            features|       rawPrediction|         probability|prediction|
++-----+--------------------+--------------------+--------------------+----------+
+|  0.0|(13459,[0,1,2,8,9...|[-796.45570905799...|[1.0,2.0631345277...|       0.0|
+|  0.0|(13459,[0,1,6,21,...|[-804.54113783103...|[1.0,1.3341950705...|       0.0|
+|  0.0|(13459,[0,1,10,15...|[-563.39905288050...|[1.0,2.4952008385...|       0.0|
+|  0.0|(13459,[0,1,10,15...|[-563.39905288050...|[1.0,2.4952008385...|       0.0|
+|  0.0|(13459,[0,1,15,19...|[-1357.2559414407...|[1.0,1.0068429225...|       0.0|
+|  0.0|(13459,[0,1,18,20...|[-823.31614992105...|[1.0,1.9285150162...|       0.0|
+|  0.0|(13459,[0,1,24,29...|[-1016.4133071261...|[1.0,7.9763655949...|       0.0|
+|  0.0|(13459,[0,1,32,12...|[-620.25440638973...|[1.0,1.9325801586...|       0.0|
+|  0.0|(13459,[0,1,175,4...|[-166.46140413074...|[0.99999999999989...|       0.0|
+|  0.0|(13459,[0,1,896,1...|[-94.412416594565...|[0.99999999549428...|       0.0|
+|  0.0|(13459,[0,2,3,4,7...|[-1232.1013660210...|[1.0,5.2353504400...|       0.0|
+|  0.0|(13459,[0,2,4,6,1...|[-2489.9094686514...|[1.0,4.2272217941...|       0.0|
+|  0.0|(13459,[0,2,4,9,3...|[-554.32529276773...|[1.0,3.2152137527...|       0.0|
+|  0.0|(13459,[0,2,4,11,...|[-1232.8706060715...|[1.0,4.4591980406...|       0.0|
+|  0.0|(13459,[0,2,4,135...|[-637.33782358223...|[1.0,8.1455549609...|       0.0|
+|  0.0|(13459,[0,2,5,15,...|[-1088.0906843342...|[1.0,1.3326413850...|       0.0|
+|  0.0|(13459,[0,2,5,25,...|[-847.71644930059...|[0.99999998773768...|       0.0|
+|  0.0|(13459,[0,2,5,28,...|[-773.10395512111...|[1.0,9.3010213408...|       0.0|
+|  0.0|(13459,[0,2,5,74,...|[-788.42935451362...|[1.0,6.2568262707...|       0.0|
+|  0.0|(13459,[0,2,8,9,1...|[-701.37591094076...|[1.0,2.6017003391...|       0.0|
++-----+--------------------+--------------------+--------------------+----------+
+only showing top 20 rows</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> pyspark.ml.evaluation <span style="color:#fff;font-weight:bold">import</span> MulticlassClassificationEvaluator</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">acc_eval = MulticlassClassificationEvaluator()
+acc = acc_eval.evaluate(test_results)
+<span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;Accuracy of model at predicting spam was: {}&#34;</span>.format(acc))</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Accuracy of model at predicting spam was: 0.920827783177929</pre></div>
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
