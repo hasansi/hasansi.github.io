@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>Hello</title>
-      <link>https://www.hasanai.com/projects/hello/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.hasanai.com/projects/hello/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Linear Regression</title>
       <link>https://www.hasanai.com/projects/linear_regression/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -58,15 +49,6 @@ Description: Measurements of ship size, capacity, crew, and age for 158 cruise s
       <description>Natural Language Processing In this project, I&amp;rsquo;ll build a spam filter using various NLP tools as well as the Naive Bayes classifier.
 I&amp;rsquo;ll use a classic dataset for this - UCI Repository SMS Spam Detection: https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection
 # %load /home/ubuntu/projects/initialize.py import findspark findspark.init(&amp;#39;/home/ubuntu/spark-2.1.1-bin-hadoop2.7&amp;#39;) import pyspark from pyspark.sql import SparkSession app_name=&amp;#39;app&amp;#39; spark=SparkSession.builder.appName(app_name).getOrCreate()data = spark.read.csv(&amp;#34;data/SMSSpamCollection&amp;#34;,inferSchema=True,sep=&amp;#39;\t&amp;#39;)#seperated by tabs, not commadata = data.withColumnRenamed(&amp;#39;_c0&amp;#39;,&amp;#39;class&amp;#39;).withColumnRenamed(&amp;#39;_c1&amp;#39;,&amp;#39;text&amp;#39;)#re-label the _c0 and _c1 columnsdata.show()+-----+--------------------+ |class| text| +-----+--------------------+ | ham|Go until jurong p.</description>
-    </item>
-    
-    <item>
-      <title>Wow</title>
-      <link>https://www.hasanai.com/projects/wow/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.hasanai.com/projects/wow/</guid>
-      <description></description>
     </item>
     
   </channel>
