@@ -11,6 +11,16 @@
     
     
     <item>
+      <title>Clustering</title>
+      <link>https://www.hasanai.com/projects/clustering/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hasanai.com/projects/clustering/</guid>
+      <description>Clustering Project The meta data of each session that the hackers used to connect to the servers of a large technology firm. These are the features of the data:
+ &amp;lsquo;Session_Connection_Time&amp;rsquo;: How long the session lasted in minutes &amp;lsquo;Bytes Transferred&amp;rsquo;: Number of MB transferred during session &amp;lsquo;Kali_Trace_Used&amp;rsquo;: Indicates if the hacker was using Kali Linux &amp;lsquo;Servers_Corrupted&amp;rsquo;: Number of server corrupted during the attack &amp;lsquo;Pages_Corrupted&amp;rsquo;: Number of pages illegally accessed &amp;lsquo;Location&amp;rsquo;: Location attack came from (Probably useless because the hackers used VPNs) &amp;lsquo;WPM_Typing_Speed&amp;rsquo;: Their estimated typing speed based on session logs.</description>
+    </item>
+    
+    <item>
       <title>email: hasan@hasanai.com</title>
       <link>https://www.hasanai.com/contact/myemail/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
