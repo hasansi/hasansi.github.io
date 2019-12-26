@@ -12,10 +12,10 @@
     
     <item>
       <title>About</title>
-      <link>https://www.hasanai.com/about/about/</link>
+      <link>https://www.hasanai.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.hasanai.com/about/about/</guid>
+      <guid>https://www.hasanai.com/about/</guid>
       <description>I&amp;rsquo;m an aspiring data scientist with experience in solving business problem using the power of data.</description>
     </item>
     
@@ -31,19 +31,19 @@
     
     <item>
       <title>email: hasan@hasanai.com</title>
-      <link>https://www.hasanai.com/contact/myemail/</link>
+      <link>https://www.hasanai.com/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.hasanai.com/contact/myemail/</guid>
+      <guid>https://www.hasanai.com/contact/</guid>
       <description>hasan@hasanai.com</description>
     </item>
     
     <item>
       <title>Industries</title>
-      <link>https://www.hasanai.com/industries/industries/</link>
+      <link>https://www.hasanai.com/industries/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.hasanai.com/industries/industries/</guid>
+      <guid>https://www.hasanai.com/industries/</guid>
       <description>I solve business problems in e-commerce, marketting and other industries that require use of NLP.</description>
     </item>
     
