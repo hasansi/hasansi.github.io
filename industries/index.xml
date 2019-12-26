@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Industries on Syed Hasan</title>
+    <link>https://www.hasanai.com/industries/</link>
+    <description>Recent content in Industries on Syed Hasan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://www.hasanai.com/industries/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Industries</title>
+      <link>https://www.hasanai.com/industries/industries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.hasanai.com/industries/industries/</guid>
+      <description>I solve business problems in e-commerce, marketting and other industries that require use of NLP.</description>
+    </item>
+    
+  </channel>
+</rss>
