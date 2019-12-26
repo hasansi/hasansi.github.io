@@ -3,10 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.hasanai.com/</loc>
-  </url>
-  
-  <url>
     <loc>https://www.hasanai.com/about/</loc>
   </url>
   
@@ -20,6 +16,10 @@
   
   <url>
     <loc>https://www.hasanai.com/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.hasanai.com/</loc>
   </url>
   
   <url>
